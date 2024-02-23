@@ -1,0 +1,31 @@
+----------------------------------------------------------------DE QUE SE TRATA----------------------------------------------------------------
+
+Éste es un pequeño juego de preguntas y respuestas sobre frases de los simpsons. La premisa es simple: Quién dijo la frase?
+Vamos a mostrar una frase y tres nombres de personajes, aciertas y ganas un punto si respondes de forma correcta qué personaje dijo la frase.
+Va a haber dos modos de juego: 
+- Fácil: sólo personajes principales;
+- Difícil: personajes principales y secundarios.
+
+
+
+
+----------------------------------------------------------------POR DONDE VAMOS----------------------------------------------------------------
+
+Scraper: TERMINADO!!!
+Back:
+Aunque solo tenemos dos modelos (que son prácticamente iguales) tenemos 3 controllers y 3 routes. Es que he decidido hacer uno por separado para
+el juego, que serán las rutas y controllers que devuelven contenido aleatorio, que tiene dos rutas, una para el modo fácil (sólo frases de
+personajes principales) o difícil (frases de jugadores principales y secundarios)
+- Crear la semilla y cargar toda la información que conseguimos con el scrapper: checked
+
+Faltaria:
+- El Front completo.
+
+
+
+
+
+
+----------------------------------------------------------------FUTURAS MEJORAS----------------------------------------------------------------
+
+- Una futura mejora sería almacenar en la base de datos junto a cada frase la url de la imagen del personaje, para poder mostrarla en el front.
