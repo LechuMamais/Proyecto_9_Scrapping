@@ -1,0 +1,18 @@
+{
+  "name": "juego-frases-simpsons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react-refresh": "^1.3.6",
+    "axios": "^1.6.7",
+    "vite": "^5.1.4"
+  }
+}

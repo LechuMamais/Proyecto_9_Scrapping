@@ -10,5 +10,5 @@ const frasesPrincipalesSchema = new mongoose.Schema(
   }
 );
 
-const frasesPrincipales = mongoose.model('frasesPrincipales', frasesPrincipalesSchema)
+const frasesPrincipales = mongoose.model('frasesPrincipales', frasesPrincipalesSchema, 'frasesPrincipales')
 module.exports = frasesPrincipales

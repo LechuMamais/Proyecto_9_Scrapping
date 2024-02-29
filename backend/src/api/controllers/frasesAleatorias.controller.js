@@ -6,25 +6,16 @@ const getFrasesPrincipalesAleatorias = async (req, res, next) => {
         // Obtenemos el número total de elementos en la colección de frases de personajes principales
         const count = await frasesPrincipales.countDocuments();
 
-        // Verificamos si hay suficientes frases para obtener tres aleatorias
-        if (count < 3) {
-            return res.status(400).json({ error: "No hay suficientes frases de personajes principales para obtener tres aleatorias." });
-        }
-
-        // Generamos tres índices aleatorios diferentes
-        const randomIndices = [];
-        while (randomIndices.length < 3) {
-            const randomIndex = Math.floor(Math.random() * count);
-            if (!randomIndices.includes(randomIndex)) {
-                randomIndices.push(randomIndex);
-            }
-        }
-
         // Obtenemos las frases y los personajes correspondientes a los índices aleatorios generados
         const frasesPrincipalesAleatorias = [];
-        for (const indice of randomIndices) {
-            const fraseAleatoria = await frasesPrincipales.findOne().skip(indice);
-            frasesPrincipalesAleatorias.push(fraseAleatoria);
+        for (let i = 0; i < 3; i) {
+            const randomIndex = Math.floor(Math.random() * count);
+            const fraseAleatoria = await frasesPrincipales.findOne().skip(randomIndex);
+            // No queremos devolver dos frases del mismo personaje, para que no aparezcan dos botones con el mismo nombre
+            if (!(frasesPrincipalesAleatorias.find((element) => element.nombre === fraseAleatoria.nombre))) {
+                frasesPrincipalesAleatorias.push(fraseAleatoria);
+                i++
+            }
         }
 
         // Retornamos el array de objetos con las tres frases de personajes principales obtenidas aleatoriamente
@@ -40,33 +31,25 @@ const getFrasesPrincipalesYSecundariosAleatorias = async (req, res, next) => {
         const countPrincipales = await frasesPrincipales.countDocuments();
         const countSecundarios = await FrasesSecundarios.countDocuments();
         const count = countPrincipales + countSecundarios
-        
-
-        // Genera tres índices aleatorios diferentes uno del otro. 
-        const randomIndices = [];
-        while (randomIndices.length < 3) {
-            const randomIndex = Math.floor(Math.random() * count);
-            // Si no es repetido, sino vuelve al bucle hasta que sean 3
-            if (!randomIndices.includes(randomIndex)) {
-                randomIndices.push(randomIndex);
-            }
-        }
-        console.log(randomIndices);
 
         // Obtenemos los elementos correspondientes a los índices aleatorios generados, dependiendo si son de principales
         // o secundarios, los vamos a buscar en una u otra collection
         const frasesPrincipalesYSecundariosAleatorias = [];
-        for(const indice of randomIndices){
-            let fraseAleatoria;
-            // Verificar si el índice aleatorio pertenece a frases principales o secundarias
-            if (indice < countPrincipales) {
-                fraseAleatoria = await frasesPrincipales.findOne().skip(indice);
+
+        for (let i = 0; i < 3; i) {
+            const randomIndex = Math.floor(Math.random() * count);
+            if (randomIndex < countPrincipales) {
+                fraseAleatoria = await frasesPrincipales.findOne().skip(randomIndex);
             } else {
-                fraseAleatoria = await FrasesSecundarios.findOne().skip(indice - countPrincipales);
+                fraseAleatoria = await FrasesSecundarios.findOne().skip(randomIndex - countPrincipales);
             }
-            // Agregar la frase aleatoria al arreglo resultante
-            frasesPrincipalesYSecundariosAleatorias.push(fraseAleatoria);
+            // No queremos devolver dos frases del mismo personaje, para que no aparezcan dos botones con el mismo nombre
+            if (!(frasesPrincipalesYSecundariosAleatorias.find((element) => element.nombre === fraseAleatoria.nombre))) {
+                frasesPrincipalesYSecundariosAleatorias.push(fraseAleatoria);
+                i++
+            }
         }
+
         // Finalmente retornamos el array de objetos con las tres frases que obtuvimos de forma aleatoria.
         return res.status(200).json(frasesPrincipalesYSecundariosAleatorias);
     } catch (error) {

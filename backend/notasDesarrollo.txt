@@ -15,11 +15,13 @@ Scraper: TERMINADO!!!
 Back:
 Aunque solo tenemos dos modelos (que son prácticamente iguales) tenemos 3 controllers y 3 routes. Es que he decidido hacer uno por separado para
 el juego, que serán las rutas y controllers que devuelven contenido aleatorio, que tiene dos rutas, una para el modo fácil (sólo frases de
-personajes principales) o difícil (frases de jugadores principales y secundarios)
+personajes principales) o difícil (frases de jugadores principales y secundarios). Estos controllers devuelven un json con 3 objetos frase,
+cada uno tiene propiedad frase y propiedad nombre.
 - Crear la semilla y cargar toda la información que conseguimos con el scrapper: checked
-
+- Estructura básica del front de la home y del game
 Faltaria:
-- El Front completo.
+- Hay un pequeño bug en la carga de la seed, se meten todas las frases como principales. Arreglarlo para poder tener los dos modos de juego
+- darle estilos a toda la página.
 
 
 

@@ -10,5 +10,5 @@ const frasesSecundariosSchema = new mongoose.Schema(
   }
 );
 
-const frasesSecundarios = mongoose.model('frasesSecundarios', frasesSecundariosSchema)
+const frasesSecundarios = mongoose.model('frasesSecundarios', frasesSecundariosSchema, 'frasesSecundarios')
 module.exports = frasesSecundarios
