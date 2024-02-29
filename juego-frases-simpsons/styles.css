@@ -1,8 +1,129 @@
-/* Estilos de la aplicación */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+@font-face{
+    font-family: Simpsons;
+    src: url(public/fonts/Simpsonfont.otf);
 }
 
-/* Estilos adicionales según sea necesario */
+body {
+    font-family: Simpsons, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#app {
+    height: 100vh;
+    background-image: url(public/background.webp);
+    background-size: cover;
+    background-position: center center;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#home-container {
+    background-color: #eaeaeabb;
+    padding: 4rem 2rem;
+    border-radius: 10px;
+    max-width: 70svw;
+
+    margin: 0;
+
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+}
+
+#home-container h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.button {
+    font-family: Simpsons, Arial, sans-serif;
+    cursor: pointer;
+    padding: 15px 25px;
+    font-size: 15px;
+    background-color: #FFEF0A;
+    border-radius: 8px;
+    border: none;
+
+    box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+}
+
+.start-button {
+    width: 250px;
+}
+
+#game-container {
+    background-color: #eaeaeabb;
+    width: 80vw;
+    height: 85vh;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 25px -12px rgba(0,0,0,0.75);
+}
+#buttons-and-h3-container{
+
+}
+#quien-lo-dijo{
+    font-size: 26px;
+    margin: 0;
+    padding: 0 0 1rem 0;
+}
+#buttons-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-frase-button {
+    width: 300px;
+}
+.backToHome-button{
+    font-size: 12px;
+    background-color: #ffef0a86;
+    scale: 0.9;
+}
+
+#frase-container {
+    height: 140px;
+    margin: 0;
+    padding: 0 1rem;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#frase-container>p {
+    margin: 0;
+    padding: 0;
+    font-size: 23px;
+}
