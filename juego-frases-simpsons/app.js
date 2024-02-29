@@ -6,12 +6,19 @@ let frases;
 let puntaje = 0;
 let fraseMostrada;
 
-async function obtenerFrasesAleatorias() {
+async function obtenerFrasesAleatorias(modo) {
     try {
-        const response = await fetch("http://localhost:3000/api/v1/game/principales");
-        frases = await response.json();
+        if (modo == "principales") {
+            const response = await fetch("http://localhost:3000/api/v1/game/principales");
+            frases = await response.json();
+        }else if (modo == "todos") {
+            const response = await fetch("http://localhost:3000/api/v1/game/principalesYSecundarios");
+            frases = await response.json();
+        }
         mostrarFraseAleatoria();
+        mostrarBotones(modo)
         mostrarPuntaje();
+
     } catch (error) {
         console.error("Error al obtener frases aleatorias:", error);
     }
@@ -22,7 +29,8 @@ function crearHome() {
     appDiv.innerHTML = `
         <div>
             <h1>Bienvenido al Juego de Frases de Los Simpsons!</h1>
-            <button onclick="comenzarJuego()">Comienza el juego</button>
+            <button onclick="comenzarJuego('principales')">Comienza el juego (easy)</button>
+            <button onclick="comenzarJuego('todos')">Para mas placer (hard)</button>
         </div>
     `;
 }
@@ -41,17 +49,17 @@ function mostrarFrase(frase) {
             <p>"${frase.frase}"</p>
         </div>
     `;
-    mostrarBotones()
+    
 }
 
-function mostrarBotones() {
+function mostrarBotones(modo) {
     const appDiv = document.getElementById("app");
     const botonesDiv = document.createElement("div");
     botonesDiv.innerHTML = `
         <div>
             <h3>Quien la dijo?</h3>
-            ${frases.map((objeto, index) => `
-                <button onclick="manejarSeleccionFrase('${objeto.nombre}')">${objeto.nombre}</button>
+            ${frases.map((objeto) => `
+                <button onclick="manejarSeleccionFrase('${objeto.nombre}', '${modo}')">${objeto.nombre}</button>
             `).join('')}
         </div>
     `;
@@ -73,16 +81,16 @@ function mostrarPuntaje() {
     appDiv.appendChild(puntajeDiv);
 }
 
-function manejarSeleccionFrase(nombre) {
+function manejarSeleccionFrase(nombre, modo) {
     // Verificar si el nombre del botón coincide con el nombre de la frase mostrada
     if (nombre === fraseMostrada.nombre) {
         puntaje++;
         mostrarPuntaje();
     }
     // Pasar a la siguiente frase
-    obtenerFrasesAleatorias()
+    obtenerFrasesAleatorias(modo)
 }
 
-function comenzarJuego() {
-    obtenerFrasesAleatorias();
+function comenzarJuego(modo) {
+    obtenerFrasesAleatorias(modo);
 }

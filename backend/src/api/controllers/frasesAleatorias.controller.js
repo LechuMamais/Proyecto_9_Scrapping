@@ -1,12 +1,12 @@
 const frasesPrincipales = require('../models/frasesPrincipales.model');
-const FrasesSecundarios = require('../models/frasesSecundarios.model');
+const frasesSecundarios = require('../models/frasesSecundarios.model');
 
 const getFrasesPrincipalesAleatorias = async (req, res, next) => {
     try {
         // Obtenemos el número total de elementos en la colección de frases de personajes principales
         const count = await frasesPrincipales.countDocuments();
 
-        // Obtenemos las frases y los personajes correspondientes a los índices aleatorios generados
+        // Obtenemos las frases y los personajes correspondientes a índices aleatorios que vamos a generar
         const frasesPrincipalesAleatorias = [];
         for (let i = 0; i < 3; i) {
             const randomIndex = Math.floor(Math.random() * count);
@@ -29,7 +29,7 @@ const getFrasesPrincipalesYSecundariosAleatorias = async (req, res, next) => {
     try {
         // Este controller es similar al anterior, sólo que incluirá también las frases de personajes secundarios
         const countPrincipales = await frasesPrincipales.countDocuments();
-        const countSecundarios = await FrasesSecundarios.countDocuments();
+        const countSecundarios = await frasesSecundarios.countDocuments();
         const count = countPrincipales + countSecundarios
 
         // Obtenemos los elementos correspondientes a los índices aleatorios generados, dependiendo si son de principales
@@ -41,7 +41,7 @@ const getFrasesPrincipalesYSecundariosAleatorias = async (req, res, next) => {
             if (randomIndex < countPrincipales) {
                 fraseAleatoria = await frasesPrincipales.findOne().skip(randomIndex);
             } else {
-                fraseAleatoria = await FrasesSecundarios.findOne().skip(randomIndex - countPrincipales);
+                fraseAleatoria = await frasesSecundarios.findOne().skip(randomIndex - countPrincipales);
             }
             // No queremos devolver dos frases del mismo personaje, para que no aparezcan dos botones con el mismo nombre
             if (!(frasesPrincipalesYSecundariosAleatorias.find((element) => element.nombre === fraseAleatoria.nombre))) {
