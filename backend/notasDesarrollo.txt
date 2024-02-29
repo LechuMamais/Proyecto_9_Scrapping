@@ -20,7 +20,6 @@ cada uno tiene propiedad frase y propiedad nombre.
 - Crear la semilla y cargar toda la información que conseguimos con el scrapper: checked
 - Estructura básica del front de la home y del game
 Faltaria:
-- Hay un pequeño bug en la carga de la seed, se meten todas las frases como principales. Arreglarlo para poder tener los dos modos de juego
 - darle estilos a toda la página.
 
 
