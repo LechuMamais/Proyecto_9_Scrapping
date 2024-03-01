@@ -110,12 +110,15 @@ body {
     background-color: #ffef0a86;
     scale: 0.9;
 }
+#backToHome-button-container{
+    align-self: flex-start;
+}
 
 #frase-container {
     height: 140px;
     margin: 0;
     padding: 0 1rem;
-    max-width: 400px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -78,10 +78,11 @@ function mostrarFraseAleatoria() {
 }
 
 function mostrarFrase(frase) {
+    const fraseAMostrar = quitarAcentos(frase.frase); // le quitamos los acentos, porque la tipografía no los admite.
     const gameContainer = document.querySelector("#game-container");
     gameContainer.innerHTML += `
         <div id="frase-container">
-            <p>"${frase.frase}"</p>
+            <p>"${fraseAMostrar}"</p>
         </div>
     `;
 }
@@ -102,18 +103,19 @@ function mostrarBotones(modo) {
     gameContainer.appendChild(botonesDiv);
 }
 function mostrarBackToHome() {
-    const appDiv = document.querySelector("#game-container");
-    const backToHomeButton = document.createElement("div");
-    backToHomeButton.innerHTML = `
+    const gameContainer = document.querySelector("#game-container");
+    const backToHomeButtonDiv = document.createElement("div");
+    backToHomeButtonDiv.id = "backToHome-button-container";
+    backToHomeButtonDiv.innerHTML = `
         <button class="backToHome-button button" onclick="crearHome()">Volver</button>
     `;
-    appDiv.prepend(backToHomeButton);
+    gameContainer.prepend(backToHomeButtonDiv);
 }
 
 function mostrarPuntaje() {
     const gameContainer = document.querySelector("#game-container");
     const puntajeDiv = document.createElement("div");
-    puntajeDiv.innerHTML = `<h3>Puntaje: ${puntaje}</h3>`;
+    puntajeDiv.innerHTML = `<h3>Puntos: ${puntaje}</h3>`;
 
     // Eliminar cualquier puntaje anterior del DOM antes de mostrar el nuevo puntaje
     const puntajeAnterior = gameContainer.querySelector("#puntaje");
@@ -133,6 +135,31 @@ function manejarSeleccionFrase(nombre, modo) {
     }
     // Pasar a la siguiente frase
     gameSecuence(modo)
+}
+
+function quitarAcentos(cadena) {
+    // Mapa de caracteres con acentos y sus equivalentes sin acento
+    const mapaAcentos = {
+        'á': 'a',
+        'é': 'e',
+        'í': 'i',
+        'ó': 'o',
+        'ú': 'u',
+        'ü': 'u',
+        'ñ': 'n',
+        'Á': 'A',
+        'É': 'E',
+        'Í': 'I',
+        'Ó': 'O',
+        'Ú': 'U',
+        'Ü': 'U',
+        'Ñ': 'N'
+    };
+
+    // Utilizamos expresiones regulares para reemplazar los caracteres con acento
+    return cadena.replace(/[áéíóúüñÁÉÍÓÚÜÑ]/g, function (match) {
+        return mapaAcentos[match];
+    });
 }
 
 function comenzarJuego(modo) {
