@@ -41,7 +41,8 @@ function crearHome() {
     const appDiv = document.getElementById("app");
     appDiv.innerHTML = `
         <div id="home-container" class="box-shadow flex">
-            <h1>¡Juego de Frases de Los Simpsons!</h1>
+            <h1>Los Simpsons!</h1>
+            <h2>Quien dijo la frase...</h2>
             <button class="start-button button" onclick="comenzarJuego('principales')">Comienza el juego -- easy</button>
             <button class="start-button button" onclick="comenzarJuego('todos')">Para mas placer --- hard</button>
         </div>
@@ -126,7 +127,7 @@ function mostrarBotones(modo) {
     `;
     gameContainer.appendChild(botonesDiv);
 }
-function mostrarBackToHome() {
+/*function mostrarBackToHome() {
     const gameContainer = document.querySelector("#game-container");
     const backToHomeButtonDiv = document.createElement("div");
     backToHomeButtonDiv.id = "backToHome-button-container";
@@ -134,6 +135,19 @@ function mostrarBackToHome() {
         <button class="backToHome-button button" onclick="crearHome()">Volver</button>
     `;
     gameContainer.prepend(backToHomeButtonDiv);
+}*/
+function mostrarBackToHome() {
+    const divApp = document.querySelector("#app");
+    const backToHomeButtonDiv = document.createElement("div");
+    const oldButton = document.querySelector("#backToHome-button-container");
+    if (oldButton) {
+        divApp.removeChild(oldButton);
+    }
+    backToHomeButtonDiv.id = "backToHome-button-container";
+    backToHomeButtonDiv.innerHTML = `
+        <button class="backToHome-button button" onclick="crearHome()">Volver</button>
+    `;
+    divApp.prepend(backToHomeButtonDiv);
 }
 
 function mostrarPuntaje() {
@@ -158,8 +172,8 @@ function gameOver() {
     const gifIndex = Math.floor(Math.random() *gifsUrl.length);
     const gameContainer = document.querySelector("#game-container");
     gameContainer.innerHTML = `
-        <div id="game-over-container">
-            <h3 id="game-over-text">Game Over</h3>
+        <div id="game-over-container" class="flex">
+            <h3 id="game-over-text">Game Over!</h3>
             <img src="${gifsUrl[gifIndex]}" id="game-over-gif">
             <div id="buttons-container">
                 <button class="game-over-button button" onclick="crearHome()">Volver</button>
