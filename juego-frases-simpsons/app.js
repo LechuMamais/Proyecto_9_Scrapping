@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let frases;
 let puntaje = 0;
-let vidas = 3;
+let vidas;
 let fraseMostrada;
 
 // Petición a nuestra API!
@@ -48,6 +48,7 @@ function crearHome() {
         </div>
     `;
 }
+
 function borrarHome() {
     // Si hay homeContainer, lo borramos.
     let homeContainer = document.querySelector("#home-container");
@@ -55,6 +56,7 @@ function borrarHome() {
         homeContainer.remove();
     }
 }
+
 function crearGameContainer() {
     const appDiv = document.getElementById("app");
     const gameContainerDiv = document.createElement("div");
@@ -63,6 +65,7 @@ function crearGameContainer() {
     appDiv.appendChild(gameContainerDiv);
     mostrarBackToHome();
 }
+
 function borrarGameContainer() {
     // Si hay gameContainer, lo borramos.
     let gameContainer = document.querySelector("#game-container");
@@ -127,22 +130,19 @@ function mostrarBotones(modo) {
     `;
     gameContainer.appendChild(botonesDiv);
 }
-/*function mostrarBackToHome() {
-    const gameContainer = document.querySelector("#game-container");
-    const backToHomeButtonDiv = document.createElement("div");
-    backToHomeButtonDiv.id = "backToHome-button-container";
-    backToHomeButtonDiv.innerHTML = `
-        <button class="backToHome-button button" onclick="crearHome()">Volver</button>
-    `;
-    gameContainer.prepend(backToHomeButtonDiv);
-}*/
-function mostrarBackToHome() {
+
+function ocultarBackToHome() {
     const divApp = document.querySelector("#app");
-    const backToHomeButtonDiv = document.createElement("div");
     const oldButton = document.querySelector("#backToHome-button-container");
     if (oldButton) {
         divApp.removeChild(oldButton);
     }
+}
+
+function mostrarBackToHome() {
+    ocultarBackToHome(); // si habia uno, lo quitamos
+    const divApp = document.querySelector("#app");
+    const backToHomeButtonDiv = document.createElement("div");
     backToHomeButtonDiv.id = "backToHome-button-container";
     backToHomeButtonDiv.innerHTML = `
         <button class="backToHome-button button" onclick="crearHome()">Volver</button>
@@ -152,22 +152,23 @@ function mostrarBackToHome() {
 
 function mostrarPuntaje() {
     const gameContainer = document.querySelector("#game-container");
-    const puntajeDiv = document.createElement("div");
-    puntajeDiv.innerHTML = `
-        <h3>Puntos: ${puntaje}</h3>
-        <h3>Vidas: ${vidas}</h3>
-    `;
 
     // Eliminar cualquier puntaje anterior del DOM antes de mostrar el nuevo puntaje
     const puntajeAnterior = gameContainer.querySelector("#puntaje");
     if (puntajeAnterior) {
         gameContainer.removeChild(puntajeAnterior);
     }
-
+    const puntajeDiv = document.createElement("div");
+    puntajeDiv.innerHTML = `
+        <h3>Puntos: ${puntaje}</h3>
+        <h3>Vidas: ${vidas}</h3>
+    `;
     puntajeDiv.id = "puntaje";
     gameContainer.appendChild(puntajeDiv);
 }
+
 function gameOver() {
+    ocultarBackToHome()
     // En el gameContainer aparecerá aleatoreamente uno de los gif!
     const gifIndex = Math.floor(Math.random() *gifsUrl.length);
     const gameContainer = document.querySelector("#game-container");
@@ -216,7 +217,6 @@ function quitarAcentos(cadena) {
         'Ü': 'U',
         'Ñ': 'N'
     };
-
     // Utilizamos expresiones regulares para reemplazar los caracteres con acento
     return cadena.replace(/[áéíóúüñÁÉÍÓÚÜÑ]/g, function (match) {
         return mapaAcentos[match];
@@ -241,7 +241,11 @@ const gifsUrl = [
 ]
 
 function comenzarJuego(modo) {
-    vidas = 3;
+    if(modo == "principales"){
+        vidas = 5;
+    } else if(modo = "secundarios"){
+        vidas = 3;
+    }
     borrarHome()
     crearGameContainer()
     gameSecuence(modo);
