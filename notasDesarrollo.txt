@@ -19,8 +19,10 @@ personajes principales) o difícil (frases de jugadores principales y secundario
 cada uno tiene propiedad frase y propiedad nombre.
 - Crear la semilla y cargar toda la información que conseguimos con el scrapper: checked
 - Estructura básica del front de la home y del game
-Faltaria:
 - darle estilos a toda la página.
+- Hacerla responsive
+
+Faltaria:
 
 
 
