@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------     GENERAL    ----------------------------------------------------------------- */
 @font-face {
     font-family: Simpsons;
-    src: url(/fonts/Simpsonfont.otf);
+    src: url("/fonts/Simpsonfont.otf") format("opentype");
 }
 
 * {
