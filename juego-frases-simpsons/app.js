@@ -11,10 +11,10 @@ let fraseMostrada;
 async function obtenerFrasesAleatorias(modo) {
     try {
         if (modo == "principales") {
-            const response = await fetch("http://localhost:3000/api/v1/game/principales");
+            const response = await fetch("https://proyecto-9-scrapping.vercel.app/api/v1/game/principales");
             frases = await response.json();
         } else if (modo == "todos") {
-            const response = await fetch("http://localhost:3000/api/v1/game/principalesYSecundarios");
+            const response = await fetch("https://proyecto-9-scrapping.vercel.app/api/v1/game/principalesYSecundarios");
             frases = await response.json();
         }
     } catch (error) {
