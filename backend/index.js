@@ -8,7 +8,7 @@ const FrasesAleatoriasRoutes = require("./src/api/routes/frasesAleatorias.routes
 const port = 3000;
 const app = express();
 app.use(cors({
-    origin: "https://proyecto-9-scrapping.vercel.app/"
+    origin: "https://proyecto-9-scrapping.vercel.app"
 }));
 connectDB();
 app.use(express.json())
