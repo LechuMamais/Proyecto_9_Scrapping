@@ -48,7 +48,6 @@ function crearHome() {
         </div>
     `;
 }
-
 function borrarHome() {
     // Si hay homeContainer, lo borramos.
     let homeContainer = document.querySelector("#home-container");
