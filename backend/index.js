@@ -7,9 +7,7 @@ const FrasesSecundariosRoutes = require("./src/api/routes/frasesSecundarios.rout
 const FrasesAleatoriasRoutes = require("./src/api/routes/frasesAleatorias.routes");
 const PORT = process.env.PORT || 3000;
 const app = express();
-app.use(cors({
-    origin: "https://proyecto-9-scrapping.vercel.app"
-}));
+app.use(cors());
 connectDB();
 app.use(express.json())
 
