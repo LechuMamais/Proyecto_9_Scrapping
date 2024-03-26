@@ -21,7 +21,6 @@ async function obtenerFrasesAleatorias(modo) {
                     },
                 }
             );
-            console.log(response);
             frases = await response.json();
         } else if (modo == "todos") {
             const response = await fetch(
@@ -33,7 +32,6 @@ async function obtenerFrasesAleatorias(modo) {
                         "Origin": "*"
                     },)
                 });
-            console.log(response);
             frases = await response.json();
         }
     } catch (error) {
