@@ -15,5 +15,5 @@ app.use("/api/v1/principales", FrasesPrincipalesRoutes);
 app.use("/api/v1/secundarios", FrasesSecundariosRoutes);
 app.use("/api/v1/game/", FrasesAleatoriasRoutes)
 
-app.use("*", (req,res,next) => {return res.status(404).json("Route Not Found")});
+app.use("*", (req,res,next) => {return res.status(404).json("Route Not Found, Bart")});
 app.listen(PORT, ()=>{console.log("Servidor iniciado en http://localhost:" + PORT)});

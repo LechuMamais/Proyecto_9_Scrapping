@@ -17,20 +17,21 @@ async function obtenerFrasesAleatorias(modo) {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Origin": "localhost:5173",
+                        "Origin": "localhost:5175",
                     },
                 }
             );
             frases = await response.json();
         } else if (modo == "todos") {
-            const response = await fetch("https://proyecto-9-scrapping.vercel.app/api/v1/game/principalesYSecundarios",
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Origin": "*"
-                },
-            });
+            const response = await fetch(
+                "https://proyecto-9-scrapping.vercel.app/api/v1/game/principalesYSecundarios",
+                {
+                    method: "GET",
+                    headers: new Headers({
+                        "Content-Type": "application/json",
+                        "Origin": "*"
+                    },) 
+                });
             frases = await response.json();
         }
     } catch (error) {
