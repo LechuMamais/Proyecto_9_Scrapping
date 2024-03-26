@@ -11,10 +11,26 @@ let fraseMostrada;
 async function obtenerFrasesAleatorias(modo) {
     try {
         if (modo == "principales") {
-            const response = await fetch("https://proyecto-9-scrapping.vercel.app/api/v1/game/principales");
+            const response = await fetch(
+                "https://proyecto-9-scrapping.vercel.app/api/v1/game/principales",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Origin": "localhost:5173",
+                    },
+                }
+            );
             frases = await response.json();
         } else if (modo == "todos") {
-            const response = await fetch("https://proyecto-9-scrapping.vercel.app/api/v1/game/principalesYSecundarios");
+            const response = await fetch("https://proyecto-9-scrapping.vercel.app/api/v1/game/principalesYSecundarios",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Origin": "*"
+                },
+            });
             frases = await response.json();
         }
     } catch (error) {
@@ -95,21 +111,21 @@ function mostrarFrase(frase) {
     const fraseDiv = document.querySelector("#frase-container>p");
     if (fraseAMostrar.length > 200) {
         fraseDiv.style.fontSize = "17px";
-    }else if (fraseAMostrar.length > 150) {
+    } else if (fraseAMostrar.length > 150) {
         fraseDiv.style.fontSize = "18px";
-    }else if (fraseAMostrar.length > 100) {
+    } else if (fraseAMostrar.length > 100) {
         fraseDiv.style.fontSize = "20px";
-    }else if (fraseAMostrar.length > 80) {
+    } else if (fraseAMostrar.length > 80) {
         fraseDiv.style.fontSize = "23px";
-    }else if (fraseAMostrar.length > 60) {
+    } else if (fraseAMostrar.length > 60) {
         fraseDiv.style.fontSize = "25px";
-    }else if (fraseAMostrar.length > 50) {
+    } else if (fraseAMostrar.length > 50) {
         fraseDiv.style.fontSize = "29px";
-    }else if (fraseAMostrar.length > 40) {
+    } else if (fraseAMostrar.length > 40) {
         fraseDiv.style.fontSize = "33px";
-    }else if (fraseAMostrar.length > 30) {
+    } else if (fraseAMostrar.length > 30) {
         fraseDiv.style.fontSize = "35px";
-    }else if (fraseAMostrar.length <=30){
+    } else if (fraseAMostrar.length <= 30) {
         fraseDiv.style.fontSize = "39px"
     }
 }
@@ -169,7 +185,7 @@ function mostrarPuntaje() {
 function gameOver() {
     ocultarBackToHome()
     // En el gameContainer aparecerá aleatoreamente uno de los gif!
-    const gifIndex = Math.floor(Math.random() *gifsUrl.length);
+    const gifIndex = Math.floor(Math.random() * gifsUrl.length);
     const gameContainer = document.querySelector("#game-container");
     gameContainer.innerHTML = `
         <div id="game-over-container" class="flex">
@@ -240,9 +256,9 @@ const gifsUrl = [
 ]
 
 function comenzarJuego(modo) {
-    if(modo == "principales"){
+    if (modo == "principales") {
         vidas = 5;
-    } else if(modo = "secundarios"){
+    } else if (modo = "secundarios") {
         vidas = 3;
     }
     borrarHome()
