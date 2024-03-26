@@ -21,6 +21,7 @@ async function obtenerFrasesAleatorias(modo) {
                     },
                 }
             );
+            console.log(response);
             frases = await response.json();
         } else if (modo == "todos") {
             const response = await fetch(
@@ -30,8 +31,9 @@ async function obtenerFrasesAleatorias(modo) {
                     headers: new Headers({
                         "Content-Type": "application/json",
                         "Origin": "*"
-                    },) 
+                    },)
                 });
+            console.log(response);
             frases = await response.json();
         }
     } catch (error) {
