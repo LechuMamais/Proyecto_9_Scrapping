@@ -15,6 +15,7 @@
     box-sizing: border-box;
     font-family: Simpsons, Arial, sans-serif;
     overflow: hidden;
+    color: black;
 }
 
 .flex{
